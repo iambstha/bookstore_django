@@ -4,8 +4,7 @@
 
 {% block content %}
     <h1>Hello {{user}}</h1>
-
-        <li>{{item.name}}</li>
+        {% if len > 0 %}
         <table class="table">
             <tr>
                 <th>S. No.</th>
@@ -29,4 +28,8 @@
             </tr>
             
         </table>
+        {% else %}
+            <label>No items in the cart</label>
+        {% endif %}
+
 {% endblock %}

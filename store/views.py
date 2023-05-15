@@ -151,10 +151,12 @@ def mycart(req):
     total = 0
     for cart in carts:
         total = total + cart.item.sell_price * cart.quantity
+    print(len(carts))
     return render(req, 'store/mycart.html',{
         'user' : user,
         'items' : items,
         'carts' : carts,
-        'total' : total
+        'total' : total,
+        'len' : len(carts)
     })
 
