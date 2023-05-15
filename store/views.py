@@ -148,10 +148,13 @@ def mycart(req):
         user = None
     carts = Cart.objects.filter(user=user).all()
     items = Item.objects.filter(cart__in=carts)
-    print(carts[0])
+    total = 0
+    for cart in carts:
+        total = total + cart.item.sell_price * cart.quantity
     return render(req, 'store/mycart.html',{
         'user' : user,
         'items' : items,
         'carts' : carts,
+        'total' : total
     })
 

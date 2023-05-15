@@ -18,18 +18,14 @@
                 <td>{{ forloop.counter }}</td>
                 <td>{{ cart.item }}</td>
                 <td>{{ cart.quantity }}</td>
-                <td>{% widthratio cart.item.sell_price 1 cart.quantity %}</td>
+                <td>Rs. {% widthratio cart.item.sell_price 1 cart.quantity %}</td>
             </tr>
             {% endfor %}
             <tr>
                 <td>Total</td>
                 <td></td>
                 <td></td>
-                <td>
-                    {% with a=5 b=7 %}
-                        {{ a|add:b }}
-                    {% endwith %}
-                </td>
+                <td>Rs. {{total}}</td>
             </tr>
             
         </table>

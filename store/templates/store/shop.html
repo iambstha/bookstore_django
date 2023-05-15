@@ -8,7 +8,7 @@
                 <th>Category</th>
                 <th>Name</th>
                 <th>Author</th>
-                <th>Cost Price</th>
+                <!-- <th>Cost Price</th> -->
                 <th>Sell Price</th>
                 <th>Add to cart</th>
             </tr>
@@ -17,8 +17,8 @@
                 <td>{{i.category}}</td>
                 <td>{{i.name}}</td>
                 <td>{{i.author}}</td>
-                <td>{{i.cost_price}}</td>
-                <td>{{i.sell_price}}</td>
+                <!-- <td>{{i.cost_price}}</td> -->
+                <td>Rs. {{i.sell_price}}</td>
                 <td>
                     <form method="POST" action="{% url 'add' %}">
                         {% csrf_token %}
