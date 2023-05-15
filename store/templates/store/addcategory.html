@@ -1,0 +1,11 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <label>Hello {{user}}</label>
+    <h2>Enter Category Details</h2>
+    <form class="form_p" method="post">
+        {% csrf_token %}
+        {{ data }}
+        <button type="submit">Add category to database</button>
+    </form>
+{% endblock %}

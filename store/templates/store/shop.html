@@ -1,0 +1,36 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<h1>Items in shop</h1>
+<div>
+        <table class="table">
+            <tr>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Cost Price</th>
+                <th>Sell Price</th>
+                <th>Add to cart</th>
+            </tr>
+            {% for i in items %}
+            <tr>
+                <td>{{i.category}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.author}}</td>
+                <td>{{i.cost_price}}</td>
+                <td>{{i.sell_price}}</td>
+                <td>
+                    <form method="POST" action="{% url 'add' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="item_id" value="{{ i.id }}">
+                        <input type="hidden" name="username" value="{{ request.user.username }}">
+                        <button type="submit">Add to cart</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+</div>
+
+{% endblock %}

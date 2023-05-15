@@ -1,0 +1,10 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <h1>Enter Product Details</h1>
+    <form class="form_p" method="post">
+        {% csrf_token %}
+        {{ data }}
+        <button type="submit">Add item to database</button>
+    </form>
+{% endblock %}

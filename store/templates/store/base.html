@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market</title>
+    <style>
+        .nav{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .nav li{
+            list-style: none;
+            padding: 10px;
+        }
+        .nav li a{
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #fff;
+            padding: 6px 10px;
+            border: 1px solid rgb(117, 116, 21);
+            border-radius: 6px;
+            background-color: rgb(117, 116, 21);
+        }
+        .nav li a:hover{
+            background-color: rgb(150, 148, 27);
+        }
+        .form_p{
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid rgb(218, 214, 214);
+            display: flex;
+            flex-direction: column;
+        }
+        .form_p .form-group{
+            display: flex;
+            flex-direction: column;
+        }
+        .form_p label{
+            font-size: 2rem;
+            line-height: 1.5;
+        }
+        .form_p input{
+            border: 1px solid rgb(150, 148, 27);
+            outline: none;
+            height: 25px;
+            padding: 5px 10px;
+        }
+        .form_p select{
+            cursor: pointer;
+            padding: 10px;
+            font-size: 1rem;
+            outline: none;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(150, 148, 27);
+        }
+        .form_p button[type=submit]{
+            cursor: pointer;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 1.5rem;
+            outline: none;
+            background-color: rgb(150, 148, 27);
+            border: 1px solid rgb(150, 148, 27);
+        }
+        .table{
+            border: 1px solid #ebebeb;
+            width: 100%;
+            background-color: #ebebeb;
+            padding: 0;
+            margin: 0;
+        }
+        .table tr{
+            border-bottom: 2px solid green;
+        }
+        .table th{
+            background-color: rgb(150, 148, 27);
+            padding: 6px 10px;
+        }
+        .table td{
+            background-color: rgb(218, 214, 214);
+            padding: 6px 10px;
+        }
+        .table form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .table button[type=submit]{
+            cursor: pointer;
+            outline: none;
+            background-color: rgb(150, 148, 27);
+            padding: 6px 8px;
+            border: 1px solid transparent;
+        }
+        .table button[type=submit]:hover{
+            background-color: rgb(117, 116, 21);
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/addcategory">Add Category</a></li>
+        <li><a href="/additem">Add Item</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/mycart">My Cart</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/signin">Sign In</a></li>
+        <li><a href="#">{{user}}</a></li>
+        <li><a href="/admin" target="_blank">Admin Login</a></li>
+    </ul>
+    <!-- {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'signin' %}">Sign in</a>
+{% endif %} -->
+    {% block content %}
+        
+    {% endblock %}
+</body>
+</html>
