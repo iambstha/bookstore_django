@@ -68,10 +68,10 @@
         }
         .table{
             border: 1px solid #ebebeb;
-            width: 100%;
+            width: 80%;
+            margin: auto;
             background-color: #ebebeb;
             padding: 0;
-            margin: 0;
         }
         .table tr{
             border-bottom: 2px solid green;
@@ -108,9 +108,15 @@
         <li><a href="/additem">Add Item</a></li>
         <li><a href="/shop">Shop</a></li>
         <li><a href="/mycart">My Cart</a></li>
+        <li>
+        {% if user %}
+            <a href="/signin">Hello {{user}}</a>
+        {% else %}
+            <a href="/signin">Sign In</a>
+        {% endif %}
+        </li>
         <li><a href="/signup">Sign Up</a></li>
-        <li><a href="/signin">Sign In</a></li>
-        <li><a href="#">{{user}}</a></li>
+        <li><a href="/logout">Log Out</a></li>
         <li><a href="/admin" target="_blank">Admin Login</a></li>
     </ul>
     <!-- {% if user.is_authenticated %}

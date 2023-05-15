@@ -1,5 +1,10 @@
 {% extends 'store/base.html' %}
 
 {% block content %}
-    <h1>Hello {{user}}</h1>
+{% if user %}
+<h1>Hello {{user}}</h1>
+{% else %}
+<h1>Hello! Please log in.</h1>
+{% endif %}
+
 {% endblock %}

@@ -77,7 +77,7 @@ def signup(req):
         data = RegUser(username = username, password=password)
         data.set_password(password)
         data.save()
-        login(req, data)
+        # login(req, data)
         return redirect('index')
     else:
         data = SignupForm()
@@ -109,7 +109,12 @@ def logout_view(request):
     return render(request, 'store/index.html', {'message': 'You have been logged out.'})
 
 def logout(request):
-    return render(request, 'store/index.html', {'message': 'You have been logged out.'})
+    user_id = request.session.clear()
+    try:
+        user = RegUser.objects.get(pk=user_id)
+    except RegUser.DoesNotExist:
+        user = None
+    return render(request, 'store/logout.html',{'user' : user})
 
 # @login_required
 @csrf_protect
