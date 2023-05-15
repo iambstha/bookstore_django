@@ -59,6 +59,7 @@ def shop(req):
         user = None
     categories = Categories.objects.all()
     items = Item.objects.all()
+    print(items)
     return render(req, 'store/shop.html',{
         'categories' : categories,
         'items' : items,
@@ -78,31 +79,36 @@ def signup(req):
         data.set_password(password)
         data.save()
         # login(req, data)
-        return redirect('index')
+        return redirect('signin')
     else:
         data = SignupForm()
     return render(req, 'store/signup.html', {'data' : data, 'user' : user})
 
 @csrf_protect
 def signin(request):
+    msg = ''
     user_id = request.session.get('user_id')
     try:
         user = RegUser.objects.get(pk=user_id)
     except RegUser.DoesNotExist:
         user = None
-    data = None
+    data = RegUser.objects.filter(username=user)
+    print(data)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = RegUser.objects.get(username=username)
-        print(user)
-        if user.check_password(password):
-            user.backend = 'django.contrib.auth.backends.ModelBackend'
-            request.session['user_id'] = user.pk
-            return redirect('shop')
-        else:
-            return redirect('index')
-    return render(request, 'store/signin.html',{'data' : data, 'user' : user})
+        try:
+            user = RegUser.objects.get(username=username)
+            if user.check_password(password):
+                user.backend = 'django.contrib.auth.backends.ModelBackend'
+                request.session['user_id'] = user.pk
+                return redirect('signin')
+            else:
+                return redirect('index')
+        except RegUser.DoesNotExist:
+            user = None
+            msg = 'Username or password incorrect!'
+    return render(request, 'store/signin.html', {'data': data, 'user': user, 'msg' : msg})
 
 def logout_view(request):
     logout(request)
@@ -156,12 +162,14 @@ def mycart(req):
     total = 0
     for cart in carts:
         total = total + cart.item.sell_price * cart.quantity
-    print(len(carts))
-    return render(req, 'store/mycart.html',{
-        'user' : user,
-        'items' : items,
-        'carts' : carts,
-        'total' : total,
-        'len' : len(carts)
-    })
+    if user:
+        return render(req, 'store/mycart.html',{
+            'user' : user,
+            'items' : items,
+            'carts' : carts,
+            'total' : total,
+            'len' : len(carts)
+        })
+    else:
+        return render(req, 'store/signin.html',{'user' : user})
 

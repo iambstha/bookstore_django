@@ -4,10 +4,19 @@
 {% if user %}
   <h1>Your profile!</h1>
   <label>Username : {{user}}</label>
+  <br>
+  {% for d in data %}
+  <label>Account created : {{d.created_at}}</label>
+  {% endfor %}
+  <br>
+  {% for d in data %}
+  <label>Last updated : {{d.last_login}}</label>
+  {% endfor %}
 {% else %}
 <h1>Sign In</h1>
 <form class="form_p" method="POST" action="{% url 'signin' %}">
     {% csrf_token %}
+    {{msg}}
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
