@@ -59,7 +59,6 @@ def shop(req):
         user = None
     categories = Categories.objects.all()
     items = Item.objects.all()
-    print(items)
     return render(req, 'store/shop.html',{
         'categories' : categories,
         'items' : items,
@@ -93,7 +92,6 @@ def signin(request):
     except RegUser.DoesNotExist:
         user = None
     data = RegUser.objects.filter(username=user)
-    print(data)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
